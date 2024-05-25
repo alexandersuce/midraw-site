@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body {
+    background-image: url('https://media.istockphoto.com/id/1151551500/fr/vid%C3%A9o/r%C3%A9solution-4k-soft-lines-vid%C3%A9o-stock.jpg?s=640x640&k=20&c=CTtsiwdTLwsHcY-7_21Dcs6wgXqxQ1NOlS0Ujtvvw20=');
+    background-size: cover; /* Ajuste la taille de l'image pour couvrir toute la surface */
+    font-size: auto; /* Vous pouvez laisser la taille de la police à "auto" ou ajuster selon vos besoins */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    background: url();
+    background-position: center;
+}
+nav {
+    position: fixed;
+    padding: 25px 60px;
+    z-index: 1;
+}
+nav a img {
+    width: 167px;
+}
+.form-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 4px;
+    padding: 70px;
+    width: 450px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, .75);
+}
+.form-wrapper h2 {
+    color: #fff;
+    font-size: 2rem;
+}
+.form-wrapper form {
+    margin: 25px 0 65px;
+}
+form .form-control {
+    height: 50px;
+    position: relative;
+    margin-bottom: 16px;
+}
+.form-control input {
+    height: 100%;
+    width: 100%;
+    background: #333;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1rem;
+    padding: 0 20px;
+}
+.form-control input:is(:focus, :valid) {
+    background: #444;
+    padding: 16px 20px 0;
+}
+.form-control label {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    pointer-events: none;
+    color: #8c8c8c;
+    transition: all 0.1s ease;
+}
+.form-control input:is(:focus, :valid)~label {
+    font-size: 0.75rem;
+    transform: translateY(-130%);
+}
+form button {
+    width: 100%;
+    padding: 16px 0;
+    font-size: 1rem;
+    background: #b909e5;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    margin: 25px 0 10px;
+    cursor: pointer;
+    transition: 0.1s ease;
+}
+form button:hover {
+    background: #590071;
+}
+.form-wrapper a {
+    text-decoration: none;
+}
+.form-wrapper a:hover {
+    text-decoration: underline;
+}
+.form-wrapper :where(label, p, small, a) {
+    color: #b3b3b3;
+}
+form .form-help {
+    display: flex;
+    justify-content: space-between;
+}
+form .remember-me {
+    display: flex;
+}
+form .remember-me input {
+    margin-right: 5px;
+    accent-color: #b3b3b3;
+}
+form .form-help :where(label, a) {
+    font-size: 0.9rem;
+}
+.form-wrapper p a {
+    color: #fff;
+}
+.form-wrapper small {
+    display: block;
+    margin-top: 15px;
+    color: #b3b3b3;
+}
+.form-wrapper small a {
+    color: #0071eb;
+}
+@media (max-width: 740px) {
+    body::before {
+        display: none;
+    }
+    nav, .form-wrapper {
+        padding: 20px;
+    }
+    nav a img {
+        width: 140px;
+    }
+    .form-wrapper {
+        width: 100%;
+        top: 43%;
+    }
+    .form-wrapper form {
+        margin: 25px 0 40px;
+    }
+}
+.speaker-btn {
+    position: fixed;
+    bottom: 20px; /* Ajuste la distance par rapport au bas */
+    right: 20px; /* Ajuste la distance par rapport à la droite */
+    background-color: #c40812; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none;
+    border-radius: 50%; /* Forme de haut-parleur */
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Ombre */
+    outline: none; /* Supprime la bordure lors du focus */
+    z-index: 999; /* Assure que le bouton reste au-dessus de tout le contenu */
+}
+
+/* Effet de survol */
+.speaker-btn:hover {
+    background-color: #7c0309; /* Couleur de fond au survol */
+}

@@ -1,0 +1,80 @@
+body {
+    background-image: url('Capture_decran_2024-05-15_a_20.15.57.png');
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.image-container {
+    margin-bottom: 20px;
+}
+.carousel-container img {
+    width: 300px;
+    height: 300px;
+}
+
+#drawingImage {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#dislikeButton {
+    background-color: #e74c3c;
+    color: white;
+}
+
+#dislikeButton:hover {
+    background-color: #c0392b;
+}
+
+#likeButton {
+    background-color: #2ecc71;
+    color: white;
+}
+
+#likeButton:hover {
+    background-color: #27ae60;
+}
+
+#startCreatingButton {
+    background-color: #3498db;
+    color: white;
+    display: none; /* Masqué par défaut */
+}
+
+#startCreatingButton:hover {
+    background-color: #2980b9;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le dessin aléatoire</title>
+    <a href="dashboard.html">
+        <img style=" position:relative; top: -20%; height: 100px; width: 100px;" src="https://cdn-icons-png.flaticon.com/512/25/25694.png" href="dashboard.html">
+    </a>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Indie+Flower&display=swap');
+
+        body {
+            background-color: #eaeaea;
+            font-family: 'Indie Flower', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-family: 'Permanent Marker', cursive;
+            color: #ff006a;
+            text-align: center;
+        }
+        .container {
+            background-color: #afafaf;
+            opacity: 0.9;
+            width: 400px;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .top, .bottom {
+            font-family: 'Permanent Marker', cursive;
+            margin: 20px;
+            font-size: 24px;
+            color: #4b0082;
+        }
+        .bar {
+            margin: 20px 0;
+        }
+        button {
+            background-color: #177afd;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 10px;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: #105bb5;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Le dessin aléatoire</h1>
+        <div class="top"></div>
+        <div class="bar">
+            <button onclick="updateText()">Trouver des idées</button>
+        </div>
+        <div class="bottom"></div>
+    </div>
+
+    <script>
+
+const topNames = [
+    "Albert Einstein", "Leonardo DiCaprio", "Ariana Grande", "Elon Musk", "Oprah Winfrey", "Beyoncé", "Cristiano Ronaldo", "Marie Curie",
+    "Emma Watson", "Drake", "Bill Gates", "Mark Zuckerberg", "Angela Merkel", "Barack Obama", "Kim Kardashian", "Lionel Messi",
+    "Adele", "Tom Cruise", "Scarlett Johansson", "Jennifer Aniston", "Brad Pitt", "Dwayne Johnson", "Will Smith", "LeBron James",
+    "Gal Gadot", "Johnny Depp", "Meryl Streep", "Keanu Reeves", "Taylor Swift", "Rihanna", "Ed Sheeran", "Michael Jordan",
+    "Serena Williams", "Stephen Hawking", "Gordon Ramsay", "Elton John", "Morgan Freeman", "Natalie Portman", "Chris Hemsworth", "Robert Downey Jr.",
+    "Vin Diesel", "Anne Hathaway", "Kanye West", "Selena Gomez", "David Beckham", "Sophie Turner", "Maisie Williams", "Kit Harington",
+    "Benedict Cumberbatch", "Tom Hiddleston", "Harrison Ford", "George Clooney", "Julia Roberts", "Samuel L. Jackson", "Emma Stone", "Daniel Radcliffe",
+    "Tom Holland", "un arabe", "un raciste", "Zendaya", "Mila Kunis", "Demi Lovato", "Jennifer Lopez", "Alicia Keys", "Shakira", "Justin Bieber",
+    "Eric Zemmour", "Emmanuel Macron", "Joe Biden", "Donald Trump", "Mickey Mouse", "Mahatma Gandhi", "Nelson Mandela", "Pablo Picasso",
+    "Vincent van Gogh", "Walt Disney", "Isaac Newton", "Galileo Galilei", "Thomas Edison", "Nikola Tesla", "Alexander Graham Bell", "Ludwig van Beethoven",
+    "Wolfgang Amadeus Mozart", "Leonardo da Vinci", "Frida Kahlo", "Andy Warhol", "Charles Darwin", "Marie Antoinette", "Cleopatra", "Julius Caesar",
+    "Napoleon Bonaparte", "Joan of Arc", "Christopher Columbus", "Marco Polo", "Ferdinand Magellan", "Homer Simpson", "Bart Simpson", "Lisa Simpson",
+    "Marge Simpson", "Homer Simpson", "Michael Jackson", "Whitney Houston", "Freddie Mercury", "Elvis Presley", "Bob Marley", "Jimi Hendrix",
+    "Kurt Cobain", "David Bowie", "Prince", "John Lennon", "Paul McCartney", "George Harrison", "Ringo Starr", "Mick Jagger",
+    "Keith Richards", "Charlie Watts", "Ronnie Wood", "Eric Clapton", "B.B. King", "Carlos Santana", "Jimmy Page", "Robert Plant",
+    "John Bonham", "John Paul Jones", "Sting", "Bono", "The Edge", "Adam Clayton", "Larry Mullen Jr.", "Kanye West",
+    "Jay-Z", "Eminem", "Dr. Dre", "Snoop Dogg", "Ice Cube", "Tupac Shakur", "The Notorious B.I.G.", "Nas",
+    "Kendrick Lamar", "J. Cole", "Travis Scott", "Post Malone", "Lil Wayne", "Nicki Minaj", "Cardi B", "Megan Thee Stallion"
+];
+
+const bottomActions = [
+    "qui joue au foot", "qui fait du yoga", "qui mange une pizza", "qui danse le tango", "qui raconte des blagues", "qui conduit un camion", "qui chante du karaoké", "qui saute en parachute",
+    "qui tricote un pull", "qui joue aux échecs", "qui nage avec les dauphins", "qui fait du ski", "qui se déguise en clown", "qui fait un gâteau", "qui joue de la guitare", "qui écrit un roman",
+    "qui fait des abdos", "qui joue au tennis", "qui lit Harry Potter", "qui peint un tableau", "qui dessine un portrait", "qui parle à un chat", "qui joue à la Playstation", "qui se déguise en super-héros",
+    "qui joue au Monopoly", "qui fait du vélo", "qui fait une sieste", "qui médite sous une cascade", "qui fait un tour de magie", "qui joue de la batterie", "qui cuisine des pâtes", "qui construit un château de sable",
+    "qui fait des blagues nulles", "qui joue au golf", "qui fait du surf", "qui apprend à jongler", "qui fait de la danse classique", "qui joue au poker", "qui fait de la plongée sous-marine", "qui chante sous la douche",
+    "qui fait des grimaces", "qui lit un livre de science-fiction", "qui fait du camping", "qui écrit des poèmes", "qui se prend en selfie", "qui regarde des dessins animés", "qui fait de la peinture sur visage", "qui bricole un robot",
+    "qui regarde les étoiles", "qui fait un marathon de films", "qui danse le cha-cha-cha", "qui mange des tacos", "qui joue de l'harmonica", "qui s'essaie au stand-up", "qui fait du jardinage", "qui grimpe aux arbres",
+    "qui fait du hula hoop", "qui lance des frisbees", "qui fait du roller", "qui saute sur un trampoline", "qui fait des puzzles", "qui joue au basket", "qui joue au badminton", "qui fait du skate", "qui fait de l'escalade",
+    "qui fait du chant lyrique", "qui écrit un journal intime", "qui fait de l'aquarelle", "qui fait de l'équitation", "qui mange une glace", "qui fait de l'origami", "qui danse la salsa", "qui court un marathon",
+    "qui fait de la méditation", "qui apprend une langue étrangère", "qui s'entraîne au lancer de javelot", "qui fait un podcast", "qui apprend à coder", "qui fait des expériences scientifiques", "qui fait du kayak",
+    "qui voyage en montgolfière", "qui fait des bracelets en perles", "qui joue du ukulélé", "qui fait du stand-up paddle", "qui fait du cerf-volant", "qui observe les oiseaux", "qui fait un concours de grimaces",
+    "qui s'entraîne à faire des figures en skateboard", "qui fait une chasse au trésor", "qui fait de l'improvisation théâtrale", "qui fait une randonnée", "qui fait du canoë", "qui bricole un meuble", "qui fait un barbecue",
+    "qui fait un pique-nique", "qui mange des pop-corn", "qui fait une séance photo", "qui fait de la couture", "qui fait de la broderie", "qui fait du breakdance", "qui fait du tir à l'arc", "qui s'entraîne à la boxe",
+    "qui fait du yoga aérien", "qui apprend à faire des cocktails", "qui joue au ping-pong", "qui fait du théâtre", "qui joue de l'accordéon", "qui fait de la poterie", "qui fait du graffiti", "qui fait de la spéléologie",
+    "qui fait de la pêche", "qui fait du ski nautique", "qui fait de la tyrolienne", "qui fait de la slackline", "qui fait du saut à l'élastique", "qui fait de la moto", "qui fait de l'haltérophilie", "qui fait de la boxe thaï",
+    "qui fait du krav maga", "qui fait du taekwondo", "qui fait de la lutte", "qui fait de l'escrime", "qui fait du tir à la carabine", "qui fait de la musculation", "qui fait de la randonnée en raquettes", "qui fait du quad",
+    "qui fait du parapente", "qui fait de la course d'orientation", "qui fait de la marche nordique", "qui fait du vol en wingsuit", "qui fait du saut en parachute", "qui fait de la voltige aérienne", "qui fait de la chute libre",
+    "qui fait du pilotage de drones", "qui fait du modélisme", "qui fait du cosplay", "qui fait du speedcubing", "qui fait du geocaching", "qui fait du parkour", "qui fait du skateboard électrique", "qui fait de la trottinette freestyle",
+    "qui fait du kendama", "qui fait du diabolo", "qui fait du monocycle", "qui fait du pogo stick", "qui fait du boomerang", "qui fait du disc golf", "qui fait des grimaces dans le miroir", "qui raconte des histoires effrayantes",
+    "qui joue de l'ocarina", "qui fabrique des avions en papier", "qui fait des tours de magie avec des cartes", "qui joue au hockey sur glace", "qui s'entraîne au tir à l'arc", "qui fait du jet ski", "qui fait de la plongée sous-marine",
+    "qui fait de l'apnée", "qui fait du rafting", "qui fait du canyoning", "qui fait du kitesurf", "qui fait du body",  ]
+    
+        // Fonction pour obtenir un élément aléatoire d'une liste
+        function getRandomElement(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        // Fonction pour mettre à jour les textes
+        function updateText() {
+            const randomName = getRandomElement(topNames);
+            const randomAction = getRandomElement(bottomActions);
+            document.querySelector('.top').textContent = randomName;
+            document.querySelector('.bottom').textContent = randomAction;
+        }
+
+        // Initialiser avec des valeurs aléatoires
+        updateText();
+    </script>
+</body>
+</html>
